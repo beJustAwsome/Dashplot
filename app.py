@@ -15,7 +15,7 @@ app = dash.Dash('app', server=server)
 
 app.scripts.config.serve_locally = False
 dcc._js_dist[0]['external_url'] = 'https://cdn.plot.ly/plotly-basic-latest.min.js'
-
+hide_modebar = ['lasso2d', 'hoverClosestCartesian', 'hoverCompareCartesian', 'sendDataToCloud', 'toggleSpikelines']
 app.layout = html.Div([
     html.H1('Stock Tickers'),
     dcc.Dropdown(
@@ -27,7 +27,7 @@ app.layout = html.Div([
         ],
         value='COKE'
     ),
-    dcc.Graph(id='my-graph')
+    dcc.Graph(id='my-graph',config={'modeBarButtonsToRemove': hide_modebar,'displaylogo': False})
 ], className="container")
 
 @app.callback(Output('my-graph', 'figure'), [Input('my-dropdown', 'value')])
